@@ -19,7 +19,7 @@ public abstract class DesyncFixin {
 	@Inject (method = "writeItemStack(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/network/PacketByteBuf;",
 			at = @At (value = "INVOKE",
 					target = "Lnet/minecraft/network/PacketByteBuf;writeNbt(Lnet/minecraft/nbt/NbtElement;)Lnet/minecraft/network/PacketByteBuf;"))
-	private void write(ItemStack itemStack, CallbackInfoReturnable<PacketByteBuf> cir) {
+	private void stacc$writeItemStackCount(ItemStack itemStack, CallbackInfoReturnable<PacketByteBuf> cir) {
 		this.writeInt(itemStack.getCount());
 	}
 
@@ -29,7 +29,7 @@ public abstract class DesyncFixin {
 	@ModifyArg (method = "readItemStack",
 			at = @At (value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;<init>(Lnet/minecraft/item/ItemConvertible;I)V"),
 			index = 1)
-	private int doThing(int amount) {
+	private int stacc$readItemStackCount(int amount) {
 		return this.readInt();
 	}
 
